@@ -33,6 +33,7 @@ Note: you'll be asked for a BOT_TOKEN. That's the bot that will be the UserLixo 
 Heroku
 ======
 Heroku support is under development :)
+[Deploy](https://heroku.com/deploy)
 
 Notes
 ====

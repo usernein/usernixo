@@ -2,8 +2,8 @@ FROM ubuntu:latest
 
 WORKDIR /usr/src/app
 RUN \
-  apt -q update && \
-  apt -q install -y git python3 python3-pip curl ffmpeg locales
+  apt -qq update && \
+  apt -qq install -y git python3 python3-pip curl ffmpeg locales
 
 COPY requirements-heroku.txt .
 RUN pip3 install -U pip setuptools wheel
