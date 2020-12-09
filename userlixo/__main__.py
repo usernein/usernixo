@@ -94,7 +94,7 @@ async def main():
                 os.remove(file)
     
     
-    if not os.path.exists('user.session'):
+    if 'DYNO' not in os.environ and not os.path.exists('user.session'):
         from userlixo.login import main as login
         await login()
         os.system('clear')
