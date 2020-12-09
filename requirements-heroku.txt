@@ -1,0 +1,14 @@
+pyrogram
+pyromod
+tgcrypto
+pyyaml
+langs
+rich
+meval
+python-dotenv
+aiocron
+click
+
+tortoise-orm
+asyncpg
+psycopg2-binary
