@@ -44,7 +44,9 @@ async def main():
         print(text)
         
         try:
-            user_value = input('└> ')
+            user_value = ''
+            if 'DYNO' not in os.environ:
+                user_value = input('└> ')
         except (KeyboardInterrupt, EOFError):
             print('[red1]Operation cancelled by user')
             exit()
@@ -65,7 +67,9 @@ async def main():
             me = await user.get_me()
         mention = '@'+me.username if me.username else me.first_name
         print(f'[bold yellow]I found an existing session from account [/][cyan]{mention}[/][bold yellow]. Do you want to use it?[/] [cyan]\[yn][/]', end='')
-        c = click.getchar(True)
+        c = 'y'
+        if 'DYNO' not in os.environ:
+            c = click.getchar(True)
         login_user = (c == 'n')
     
     if login_user:
@@ -102,7 +106,9 @@ async def main():
             me = await bot.get_me()
         mention = '@'+me.username
         print(f'[bold yellow]I found an existing session from bot [/][cyan]{mention}[/][bold yellow]. Do you want to use it? [/][cyan]\[yn]', end='')
-        c = click.getchar(True)
+        c = 'y'
+        if 'DYNO' not in os.environ:
+            c = click.getchar(True)
         login_bot = (c == 'n')
     
     print('\n[bold green]- Logging in the assistant bot...')
@@ -114,7 +120,9 @@ async def main():
         print(text)
         
         try:
-            user_value = input('└> ')
+            user_value = ''
+            if 'DYNO' not in os.environ:
+                user_value = input('└> ')
         except (KeyboardInterrupt, EOFError):
             print('[red1]Operation cancelled by user')
             exit()
