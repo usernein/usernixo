@@ -60,7 +60,8 @@ async def on_upgrade_u(c, u):
     
     if 'DYNO' in os.environ:
         git_url = heroku_app.git_url
-        os.remove('.gitignore')
+        if os.path.exists('.gitignore'):
+            os.remove('.gitignore')
         os.system(f'git remote add app {git_url}; git fetch app && git add . && git commit -m "Upgrade UserLixo" && git push -f app master')
         await msg.reply('Qftergi')
     
