@@ -4,8 +4,7 @@ ENV DEBIAN_FRONTEND="nointeractive"
 
 RUN apt-get -qq update && \
   apt-get -qq install -y git python3 python3-pip curl ffmpeg locales tzdata
-RUN add-apt-repository ppa:dawidd0811/neofetch && \
-  apt update && apt install neofetch
+RUN apt update && apt install neofetch
 
 RUN git clone https://github.com/usernein/usernixo /usr/src/app/Userlixo
 WORKDIR /usr/src/app/Userlixo
