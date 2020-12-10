@@ -29,7 +29,7 @@ from pyromod.helpers import ikb
 from rich import print, box
 from rich.panel import Panel
 from tortoise import run_async
-from userlixo.utils import shell_exec, timezone_shortener, get_inactive_plugins
+from userlixo.utils import shell_exec, timezone_shortener, get_inactive_plugins, tryint
 import aiocron
 import glob
 import platform
@@ -146,7 +146,6 @@ async def main():
             local_version=local_version
         )
         
-        
         try:
             editor = bot if from_cmd.endswith('_bot') else user
             if editor == bot:
@@ -157,7 +156,7 @@ async def main():
             if chat_id == 'inline':
                 await bot.edit_inline_text(message_id, text, **kwargs)
             else:
-                await editor.edit_message_text(int(chat_id), int(message_id), text, **kwargs)
+                await editor.edit_message_text(tryint(chat_id), tryint(message_id), text, **kwargs)
         except Exception as e:
             print(f'[yellow]Failed to edit the restarting alert. Maybe the message has been deleted or somehow it became inacessible.\n>> {e}[/yellow]')
         await Config.get(id=restarting_alert.id).delete()
