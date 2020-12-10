@@ -5,7 +5,7 @@ import os
 import re
 import traceback
 
-from userlixo.config import sudoers, heroku, heroku_app
+from userlixo.config import sudoers, heroku_client, heroku_app
 from contextlib import redirect_stdout
 from pyrogram import Client, filters
 
@@ -32,7 +32,7 @@ async def execs(c, m):
     
     with redirect_stdout(strio):
         try:
-            await locals()["__ex"](c, m, reply, user, chat, heroku, heroku_app)
+            await locals()["__ex"](c, m, reply, user, chat, heroku_client, heroku_app)
         except:
             traceback_string = traceback.format_exc()
             text = f'<b>{html.escape(traceback_string)}</b>'

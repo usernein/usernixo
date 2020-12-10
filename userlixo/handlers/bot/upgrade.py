@@ -2,7 +2,7 @@ from userlixo.database import Config
 from datetime import datetime
 from pyrogram import Client, filters
 from pyromod.helpers import ikb
-from userlixo.config import heroku, heroku_app
+from userlixo.config import heroku_client, heroku_app
 from userlixo.utils import shell_exec, timezone_shortener, heroku_self_deploy
 import os, re, sys
 
@@ -60,7 +60,7 @@ async def on_upgrade_u(c, u):
     
     if 'DYNO' in os.environ:
         await msg.edit(lang.deploying_on_heroku)
-        heroku_self_deploy(heroku, heroku_app)
+        heroku_self_deploy(heroku_client, heroku_app)
     
     args = [sys.executable, '-m', 'userlixo']
     if '--no-update' in sys.argv:
