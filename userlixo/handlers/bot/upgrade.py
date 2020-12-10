@@ -3,7 +3,7 @@ from datetime import datetime
 from pyrogram import Client, filters
 from pyromod.helpers import ikb
 from userlixo.config import heroku, heroku_app
-from userlixo.utils import shell_exec, timezone_shortener
+from userlixo.utils import shell_exec, timezone_shortener, heroku_self_deploy
 import os, re, sys
 
 @Client.on_callback_query(filters.sudoers & filters.regex('^upgrade$'))
@@ -59,11 +59,8 @@ async def on_upgrade_u(c, u):
     await Config.create(**{"key": "restarting_alert", "value": f'{message_id}|{chat_id}|{datetime.now().timestamp()}|upgrade{from_where}'})
     
     if 'DYNO' in os.environ:
-        git_url = heroku_app.git_url
-        if os.path.exists('.gitignore'):
-            os.remove('.gitignore')
-        os.system(f'git remote add app {git_url}; git fetch app && git add . && git commit -m "Upgrade UserLixo" && git push -f app master')
-        await msg.reply('Qftergi')
+        await msg.edit(lang.deploying_on_heroku)
+        heroku_self_deploy(heroku, heroku_app)
     
     args = [sys.executable, '-m', 'userlixo']
     if '--no-update' in sys.argv:
