@@ -8,7 +8,7 @@ unused_requirements = []
 if 'DYNO' not in os.environ:
     if '--no-update' not in sys.argv:
         print('\033[0;32m[1/2] Updating requirements...\033[0m')
-        os.system(f'{DGRAY}; {sys.executable} -m pip install -Ur requirements-sqlite.txt; {RESET}')
+        os.system(f'{DGRAY}; {sys.executable} -m pip install -Ur requirements.txt; {RESET}')
         os.system('clear')
         # Update plugins requirements
         from userlixo.config import plugins
@@ -19,7 +19,6 @@ if 'DYNO' not in os.environ:
             os.system(f'{DGRAY}; {sys.executable} -m pip install -Ur plugins-requirements.txt; {RESET}')
 print('\033[0m')
 os.system('clear')
-
 
 from userlixo.config import load_env, sudoers, langs, user, bot, unload_inactive_plugins, plugins
 from userlixo.database import connect_database, Config

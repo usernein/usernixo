@@ -15,6 +15,12 @@ import re
 import yaml
 
 sudoers = []
+heroku = None
+heroku_app = None
+if 'DYNO' in os.environ:
+    import heroku3
+    heroku = heroku3.from_key(os.environ['HEROKU_API_KEY'])
+    heroku_app = heroku.apps()[os.environ['APP_NAME']]
 
 async def load_env():
     environment_vars = {
