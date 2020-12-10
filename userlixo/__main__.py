@@ -44,7 +44,7 @@ async def alert_startup():
     system_uname = (await shell_exec('uname -mons'))[0]
     
     pid = os.getpid()
-    uptime = (await shell_exec("ps -eo pid,etime | grep "+str(pid)+" | awk '{print $2}'"))[0]
+    uptime = (await shell_exec("ps -o pid,etime --no-headers -p "+str(pid)+" | awk '{print $2}' "))[0]
     
     user_plugins = len([x for x in plugins['user']])
     bot_plugins = len([x for x in plugins['bot']])
