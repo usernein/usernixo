@@ -363,3 +363,9 @@ deploying_on_heroku: |-
     📤 O UserLixo está enviando o código para o app na Heroku e fazendo rebuild do container... Isso deve demorar ~4 minutos. Você pode acompanhar o progresso no dashboard da Heroku.
     
     Isto é feito para evitar perda de arquivos após um reinício ou limpeza do app (feito periodicamente pela Heroku).
+
+not_running_in_heroku: |-
+    ❕ Você não está executando na Heroku.
+
+alert_need_deploy: |-
+    ❕ Use .<code>deploy</code> para enviar as mudanças para o app da Heroku.
